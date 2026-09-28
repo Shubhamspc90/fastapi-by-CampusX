@@ -122,3 +122,35 @@ def delete_patient(patient_id: int):
         "message": "Patient deleted successfully",
         "data": deleted_patient
     }
+    
+# The complete connection
+#               FastAPI
+#                  │
+#                  ↓
+#           @app.post/get/put/delete
+#                  │
+#                  ↓
+#              Endpoint
+#                  │
+#       ┌──────────┴──────────┐
+#       ↓                     ↓
+#  Path Parameter         Request Body
+#  patient_id             patient: Patient
+#       │                     │
+#       │                     ↓
+#       │               Pydantic Model
+#       │                     │
+#       │                     ↓
+#       │              Validation
+#       │                     │
+#       └──────────┬──────────┘
+#                  ↓
+#             patients {}
+#                  │
+#       ┌──────────┼──────────┐
+#       ↓          ↓          ↓
+#     CREATE      READ      UPDATE/DELETE
+#       │          │          │
+#       └──────────┴──────────┘
+#                  ↓
+#               Response
